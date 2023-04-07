@@ -50,9 +50,16 @@ ROBOTSTXT_OBEY = True
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    "football_clubs.middlewares.FootballClubsDownloaderMiddleware": 543,
-#}
+ROTATING_PROXY_LIST = [
+   'http://rzymwsoq:dibqf7hv2tv7@185.199.228.220:7300',
+   'http://rzymwsoq:dibqf7hv2tv7@188.74.183.10:8279'
+]
+
+DOWNLOADER_MIDDLEWARES = {
+   # "football_clubs.middlewares.FootballClubsDownloaderMiddleware": 543,
+    'rotating_proxies.middlewares.RotatingProxyMiddleware': 610,
+    'rotating_proxies.middlewares.BanDetectionMiddleware': 620,
+}
 
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
