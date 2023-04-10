@@ -1,6 +1,6 @@
 import scrapy
+from itemloaders.processors import TakeFirst
 from scrapy.loader import ItemLoader
-from scrapy.loader.processors import TakeFirst
 
 from football_clubs.items import FootballPlayersItem
 
