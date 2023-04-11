@@ -8,8 +8,24 @@
 import json
 from football_clubs.models import db_connect, create_table, FootballClubsData, PlayersData
 from sqlalchemy.orm import sessionmaker
-
+import pandas as pd
 from itemadapter import ItemAdapter
+
+
+class FileCsvPipeline:
+
+    def __init__(self):
+        self.data = pd.DataFrame()
+
+    def process_item(self, item, spider):
+        main_data = ItemAdapter(item).asdict()
+        df = pd.DataFrame.from_records([main_data])
+        self.data = pd.concat([self.data, df], ignore_index=True)
+
+        return item
+
+    def close_spider(self, spider):
+        self.data.to_csv(f'{spider.name}.csv', index=False)
 
 
 class FileJsonPipeline:

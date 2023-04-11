@@ -71,8 +71,9 @@ DOWNLOADER_MIDDLEWARES = {
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   "football_clubs.pipelines.FileJsonPipeline": 300,
-    "football_clubs.pipelines.SqlalchemyPipeline": 400,
+   # "football_clubs.pipelines.FileJsonPipeline": 300,
+   #  "football_clubs.pipelines.SqlalchemyPipeline": 400,
+    "football_clubs.pipelines.FileCsvPipeline": 300,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
