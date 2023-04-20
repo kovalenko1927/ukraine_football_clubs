@@ -1,8 +1,9 @@
+from football_clubs.items import FootballPlayersItem
+
+from itemloaders.processors import TakeFirst
+
 import scrapy
 from scrapy.loader import ItemLoader
-from scrapy.loader.processors import TakeFirst
-
-from football_clubs.items import FootballPlayersItem
 
 
 class PlayersSpider(scrapy.Spider):

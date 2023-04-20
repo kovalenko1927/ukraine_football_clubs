@@ -7,7 +7,27 @@
 # useful for handling different item types with a single interface
 import json
 
+from football_clubs.models import DBClient
+
 from itemadapter import ItemAdapter
+
+import pandas as pd
+
+
+class FileCsvPipeline:
+
+    def __init__(self):
+        self.data = pd.DataFrame()
+
+    def process_item(self, item, spider):
+        main_data = ItemAdapter(item).asdict()
+        df = pd.DataFrame.from_records([main_data])
+        self.data = pd.concat([self.data, df], ignore_index=True)
+
+        return item
+
+    def close_spider(self, spider):
+        self.data.to_csv(f'{spider.name}.csv', index=False)
 
 
 class FileJsonPipeline:
@@ -24,3 +44,10 @@ class FileJsonPipeline:
         return item
 
 
+class DBPipeline:
+    def open_spider(self, spider):
+        self.client = DBClient(table_name=spider.name)
+
+    def process_item(self, item, spider):
+        self.client.save_data([item])
+        return item

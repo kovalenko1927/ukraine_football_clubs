@@ -1,7 +1,9 @@
-import scrapy
-from itemloaders.processors import TakeFirst
-from scrapy.loader import ItemLoader
 from football_clubs.items import FootballClubsItem
+
+from itemloaders.processors import TakeFirst
+
+import scrapy
+from scrapy.loader import ItemLoader
 
 
 class ClubsSpider(scrapy.Spider):
@@ -20,8 +22,9 @@ class ClubsSpider(scrapy.Spider):
         self.club_id += 1
         loader.add_value("club_id", self.club_id)
         loader.add_css("club_name", "div.info-intro h1::text")
-        loader.add_css("league_name", "article.game-feed.premier-league h3::text")
+        loader.add_css("league_name",
+                       "article.game-feed.premier-league h3::text")
         loader.add_css("logo_link", "div.info-logo img::attr(src)")
-        loader.add_xpath("web_site_link", "//div[@class='info-intro']//td/a[@target]/@href")
+        loader.add_xpath("web_site_link",
+                         "//div[@class='info-intro']//td/a[@target]/@href")
         yield loader.load_item()
-
