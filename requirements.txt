@@ -1,6 +1,7 @@
+flake8==6.0.0
+itemadapter==0.8.0
+itemloaders==1.0.6
+pandas==2.0.0
 Scrapy==2.8.0
 scrapy-rotating-proxies==0.6.2
-SQLAlchemy~=2.0.9
-itemloaders~=1.0.6
-itemadapter~=0.8.0
-pandas~=2.0.0
+SQLAlchemy==2.0.9
